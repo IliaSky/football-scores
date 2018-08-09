@@ -3,10 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
   },
   "scripts": {
     "postinstall": "cd client && npm install",
-    "start": "cd client && npm start",
-    "build": "cd client && npm build"
+    "client-dev": "cd client && npm start",
+    "client-build": "cd client && npm run build",
+    "server-prod": "node server/index.js",
+    "server-dev": "nodemon server/index.js",
+    "dev": "concurrently \"npm run server-dev\" \"npm run client-dev\"",
+    "prod": "npm run client-build && npm run server-prod",
+    "start": "npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^3.6.1",
+    "nodemon": "^1.18.3"
   }
 }
