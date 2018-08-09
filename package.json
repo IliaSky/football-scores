@@ -7,12 +7,15 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "mongodb": "^3.1.1",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
   },
   "scripts": {
-    "postinstall": "cd client && npm install",
+    "postinstall": "mkdir db & cd client && npm install",
+    "prestart": "start mongod --smallfiles --dbpath db",
+    "poststart": "mongo admin --eval \"db.shutdownServer()\"",
     "client-dev": "cd client && npm start",
     "client-build": "cd client && npm run build",
     "server-prod": "node server/index.js",
