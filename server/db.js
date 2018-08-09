@@ -5,7 +5,7 @@ const url = 'mongodb://localhost:27017/';
 
 const api = {
   findUser(username, cb) {
-    this.db.collection("users").find({username}, cb);
+    this.db.collection("users").findOne({username}, cb);
   },
   addUser({username, password}, cb) {
     bcrypt.hash(password, 10, (err, hash) => {
@@ -22,13 +22,5 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, db) => {
   api.db = db.db('football-scores');
   console.log('connected to mongo server');
 });
-
-// const dummyUsers = ['A', 'B', 'C'].map(
-//   name => ({username: name, password: bcrypt.hashSync(name, 10)})
-// );
-// const findUser = (username, cb) => {
-//   const user = dummyUsers.find(user => user.username == username);
-//   cb(null, user);
-// };
 
 module.exports = api;

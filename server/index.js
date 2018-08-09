@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
-authentication.setup(app, db.findUser);
+authentication.setup(app, db);
 app.use('/api', authentication.check, apiRouter);
 
 app.listen(8080, () => console.log('Listening on port 8080!'));
