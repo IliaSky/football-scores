@@ -8,6 +8,9 @@ yarn-error.log*
 # Client build folder
 client/build
 
+# Database folder
+db
+
 # Runtime data
 pids
 *.pid
