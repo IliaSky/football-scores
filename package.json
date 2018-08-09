@@ -1,0 +1,12 @@
+{
+  "name": "football-scores",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+  },
+  "scripts": {
+    "postinstall": "cd client && npm install",
+    "start": "cd client && npm start",
+    "build": "cd client && npm build"
+  }
+}
