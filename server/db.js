@@ -16,11 +16,15 @@ const api = {
 
 MongoClient.connect(url, {useNewUrlParser: true}, (err, db) => {
   if (err) {
-    console.log(err);
-    process.exit();
+    Object.assign(api, {
+      findUser: (_, cb) => cb(err),
+      addUser: (_, cb) => cb(err)
+    });
+    console.log('could not connect to mongo server');
+  } else {
+    api.db = db.db('football-scores');
+    console.log('connected to mongo server');
   }
-  api.db = db.db('football-scores');
-  console.log('connected to mongo server');
 });
 
 module.exports = api;
