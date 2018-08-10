@@ -11,6 +11,16 @@ client/build
 # Database folder
 db
 
+# API config
+api-config.json
+
+# Postman collections
+*.postman_collection.json
+
+# OS metadata
+.DS_Store
+desktop.ini
+
 # Runtime data
 pids
 *.pid
