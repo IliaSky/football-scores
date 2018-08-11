@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import TopToolbar from './components/TopToolbar/TopToolbar';
-import CountryList from './components/CountryList/CountryList';
 import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import './utils.js';
+import TopToolbar from './components/TopToolbar/TopToolbar';
+import BottomToolbar from './components/BottomToolbar/BottomToolbar';
+import CountryList from './components/CountryList/CountryList';
+import MatchList from './components/MatchList/MatchList';
+import MatchDetails from './components/MatchDetails/MatchDetails';
+import CompetitionList from './components/CompetitionList/CompetitionList';
 
 const theme = createMuiTheme({
   palette: {
@@ -20,18 +25,32 @@ const theme = createMuiTheme({
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <MuiThemeProvider theme={theme}>
-          <TopToolbar />
+      <Router>
+        <div className="App">
+          <MuiThemeProvider theme={theme}>
+            <TopToolbar />
 
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to Football Scores</h1>
-          </header>
+            <Switch>
+              <Route exact path='/' render={() =>
+                <header className="App-header">
+                  <img src={logo} className="App-logo" alt="logo" />
+                  <h1 className="App-title">Welcome to Football Scores</h1>
+                </header>
+              }/>
 
-          <CountryList />
-        </MuiThemeProvider>
-      </div>
+              <Route path='/countries' component={CountryList} />
+              <Route path='/matches/:id' component={MatchDetails} />
+              <Route path='/matches' component={MatchList} />
+              <Route path='/competitions' component={CompetitionList} />
+              {
+              // <Route path='/favorites' component={FavoriteList}/>
+              }
+            </Switch>
+
+            <BottomToolbar />
+          </MuiThemeProvider>
+        </div>
+      </Router>
     );
   }
 }
