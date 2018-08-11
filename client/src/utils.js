@@ -6,15 +6,22 @@ const footballAPI = (endpoint) => axios.get(url + endpoint, {
   headers: {
     'X-Mashape-Key': key
   }
-}).then(res => (console.log(res.data.data), res.data.data));
+}).then(res => {
+  console.log(res.data.data);
+  return res.data.data;
+});
 
 const serverUrl = 'http://localhost:3000/';
 
 const serverAPI = (endpoint) => axios.post(serverUrl + endpoint, {
   // headers: {
   // }
-}).then(res => (console.log(res), res));
+}).then(res => {
+  console.log(res);
+  return res;
+});
 
+// for development only
 window.fb = footballAPI;
 window.sa = serverAPI;
 
