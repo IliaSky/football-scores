@@ -10,13 +10,14 @@ import Competition from './components/Competition/Competition';
 import Home from './components/Home/Home';
 
 const routes = [
-  { path: '/countries', component: Country, list: true },
-  { path: '/matches/:id', component: MatchDetails },
-  { path: '/matches', component: Match, list: true },
-  { path: '/competitions', component: Competition, list: true },
+  { path: '/countries', component: Country, list: true, title: 'Countries' },
+  { path: '/matches/:id', component: MatchDetails, title: 'Match Details' },
+  { path: '/matches', component: Match, list: true, title: 'Matches' },
+  { path: '/competitions', component: Competition, list: true, title: 'Competitions' },
   { path: '/competitions/:id', component: Competition },
-  { path: '/', component: Home, offline: true },
+  { path: '/', component: Home, title: 'Football Scores', offline: true },
 ];
+
 const theme = createMuiTheme({
   palette: {
     primary: {

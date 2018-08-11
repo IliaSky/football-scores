@@ -15,7 +15,7 @@ const styles = {
 };
 
 function TopToolbar(props) {
-  const { classes } = props;
+  const { classes, title } = props;
   return (
     <AppBar position="static">
       <Toolbar>
@@ -23,7 +23,7 @@ function TopToolbar(props) {
           <MenuIcon />
         </IconButton>
         <Typography variant="title" color="inherit" className={classes.flex}>
-          Football
+          {title}
         </Typography>
         <Button color="inherit">Login</Button>
       </Toolbar>

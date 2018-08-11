@@ -7,8 +7,12 @@ const Navigator = ({routes}) => (
   <Router>
     <Switch>
       {routes.map(route => (
-        <Route path={route.path} key={route.path} render={
-          () => <Page url={!route.offline && window.location.pathname} component={route.component} list={route.list} />
+        <Route path={route.path} key={route.path} render={() =>
+          <Page
+            url={!route.offline && window.location.pathname}
+            title={route.title}
+            component={route.component}
+            list={route.list} />
         } />
       ))}
     </Switch>

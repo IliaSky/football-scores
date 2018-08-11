@@ -58,7 +58,7 @@ class Page extends Component {
   }
 
   render() {
-    const title = this.props.title || this.state.data.name || 'Football';
+    const title = this.state.data.name || this.props.title || '';
 
     return (
       <div className="Page">
