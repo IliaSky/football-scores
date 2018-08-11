@@ -4,7 +4,7 @@ import LanguageIcon from '@material-ui/icons/Language';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import LiveTvIcon from '@material-ui/icons/LiveTv';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 const items = [
   {text: 'Matches', Icon: LiveTvIcon},
@@ -20,13 +20,24 @@ class BottomToolbar extends Component {
 
     this.state = {
       items: items,
-      value: items.map(e => e.to).indexOf(window.location.pathname)
+      value: -1
     };
   }
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
+  updateIndex(){
+    this.setState({
+      value: items.findIndex(item => window.location.pathname.startsWith(item.to))
+    });
+  }
+
+  componentWillMount() {
+    this.updateIndex();
+    this.unlisten = this.props.history.listen(() => this.updateIndex());
+  }
+
+  componentWillUnmount() {
+      this.unlisten();
+  }
 
   render() {
     const { value } = this.state;
@@ -35,7 +46,6 @@ class BottomToolbar extends Component {
       <div style={{marginTop: 56}}>
         <BottomNavigation style={{position: 'fixed', bottom: 0, width: '100%'}}
           value={value}
-          onChange={this.handleChange}
           showLabels
         >
           {this.state.items.map(({text, Icon, to}) =>
@@ -48,4 +58,4 @@ class BottomToolbar extends Component {
 }
 
 
-export default BottomToolbar;
+export default withRouter(BottomToolbar);
