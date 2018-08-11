@@ -1,11 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
 import Page from './Page';
-// import { AnimatedSwitch } from 'react-router-transition';
 
 const Navigator = ({routes}) => (
   <Router>
-    <Switch>
+    <AnimatedSwitch
+      atEnter={{ opacity: 1 }}
+      atLeave={{ opacity: 0 }}
+      atActive={{ opacity: 1 }}
+      className="AnimatedSwitch"
+      >
       {routes.map(route => (
         <Route path={route.path} key={route.path} render={() =>
           <Page
@@ -15,7 +20,7 @@ const Navigator = ({routes}) => (
             list={route.list} />
         } />
       ))}
-    </Switch>
+    </AnimatedSwitch>
   </Router>
 );
 
