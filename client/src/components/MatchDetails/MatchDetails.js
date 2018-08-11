@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
-import { Avatar, Card, CardContent, Typography, CircularProgress } from '@material-ui/core';
-import { footballAPI } from 'utils';
+import { Avatar, Card, CardContent, Typography } from '@material-ui/core';
 // import { withStyles } from '@material-ui/core/styles';
 
   // "id": 1247691,
@@ -35,45 +32,14 @@ const Team = ({data, teamType}) => (
       <Typography color="textSecondary">
         {data.score}
       </Typography>
-      <Typography component="p">
-        paragraph text
-      </Typography>
     </CardContent>
   </Card>
 );
 
 class MatchDetails extends Component {
-  constructor() {
-    super();
-    this.state = {data: {}, loading: true};
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-    footballAPI(window.location.pathname).then(data => {
-      if (this._isMounted) {
-        this.setState({data, loading: false});
-      }
-    }).catch(error => {
-      if (this._isMounted) {
-        this.setState({loading: false, error});
-      }
-    });
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
   render() {
-    const {data, loading, error} = this.state;
+    const {data} = this.props;
 
-    if (loading) {
-      return <CircularProgress style={{marginTop: '30px'}}/>;
-    }
-    if (error) {
-      return <div className="error">{error.message}</div>;
-    }
     return (
       <div>
         <Team data={data.homeTeam} teamType="Home" />

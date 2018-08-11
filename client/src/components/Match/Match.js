@@ -1,6 +1,5 @@
 import React from 'react';
 import { ListItem, ListItemText } from '@material-ui/core';
-import ItemList from '../ItemList/ItemList';
 
 // {
 //   "id": 1365604,
@@ -22,10 +21,5 @@ const Match = ({data, history}) => (
   </ListItem>
 );
 
-
-const MatchList = () => (
-  <ItemList url="matches" item={Match} />
-);
-
-export default MatchList;
+export default Match;
 
