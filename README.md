@@ -6,7 +6,7 @@ The repo is divided into 2 sections - the node server and the react client. The 
 
 ## Installation
 
-- install node and mongojs
+- install node and mongodb
 - `npm install`
 
 ## Usage - npm run commands
