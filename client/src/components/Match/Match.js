@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListItem, ListItemText } from '@material-ui/core';
+import { ListItem, ListItemText, ListItemSecondaryAction } from '@material-ui/core';
 
 // {
 //   "id": 1365604,
@@ -16,8 +16,9 @@ const Match = ({data, history}) => (
     <ListItemText
       primary={data.homeTeam.name + ' - ' + data.awayTeam.name}
       secondary={data.homeTeam.score + ' - ' + data.awayTeam.score} />
-    <div>Live: {data.isLiveStream ? 'yes' : 'no'}</div>
-    <div>Status: {data.status}</div>
+    <ListItemSecondaryAction>
+      {(data.isLiveStream ? 'Live ' : '') + data.status}
+    </ListItemSecondaryAction>
   </ListItem>
 );
 

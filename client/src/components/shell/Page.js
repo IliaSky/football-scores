@@ -15,10 +15,12 @@ class Page extends Component {
   componentDidMount() {
     this._isMounted = true;
     this._component = withRouter(this.props.component);
+    const { dataMap } = this.props;
 
     if (this.props.url) {
       footballAPI(this.props.url).then(data => {
         if (this._isMounted) {
+          data = dataMap ? dataMap(data): data;
           this.setState({data, loading: false});
         }
       }).catch(error => {
@@ -59,16 +61,17 @@ class Page extends Component {
 
   render() {
     const title = this.state.data.name || this.props.title || '';
+    const toolbars = this.props.toolbars || {top: true, bottom: true};
 
     return (
       <div className="Page">
-        <TopToolbar title={title}/>
+        {toolbars.top && <TopToolbar title={title}/>}
 
         <div className="Page-content">
           {this.renderContent()}
         </div>
 
-        <BottomToolbar />
+        {toolbars.bottom && <BottomToolbar />}
       </div>
     );
   }

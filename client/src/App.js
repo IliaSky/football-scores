@@ -7,14 +7,15 @@ import Country from './components/Country/Country';
 import Match from './components/Match/Match';
 import MatchDetails from './components/MatchDetails/MatchDetails';
 import Competition from './components/Competition/Competition';
+import CompetitionDetails from './components/CompetitionDetails/CompetitionDetails';
 import Home from './components/Home/Home';
 
 const routes = [
   { path: '/countries', component: Country, list: true, title: 'Countries' },
   { path: '/matches/:id', component: MatchDetails, title: 'Match Details' },
   { path: '/matches', component: Match, list: true, title: 'Matches' },
+  { path: '/competitions/:id', component: CompetitionDetails },
   { path: '/competitions', component: Competition, list: true, title: 'Competitions' },
-  { path: '/competitions/:id', component: Competition },
   { path: '/', component: Home, title: 'Football Scores', offline: true },
 ];
 

@@ -1,0 +1,19 @@
+.MatchOverview {
+  text-align: center;
+}
+
+.MatchLineups {
+  padding-top: 20px;
+}
+
+.MatchLineups-title {
+  text-align: center;
+}
+
+.MatchLineups-team {
+  text-transform: capitalize;
+}
+
+.MatchEvents td, .MatchEvents th {
+  padding: 4px 12px;
+}
