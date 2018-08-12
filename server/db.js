@@ -5,12 +5,15 @@ const url = 'mongodb://localhost:27017/';
 
 const api = {
   findUser(username, cb) {
-    this.db.collection("users").findOne({username}, cb);
+    api.db.collection("users").findOne({username}, cb);
   },
   addUser({username, password}, cb) {
     bcrypt.hash(password, 10, (err, hash) => {
-      this.db.collection("users").insert({username, password: hash}, cb);
+      api.db.collection("users").insert( {username, password: hash} , cb);
     });
+  },
+  updateFavorites(username, favorites, cb) {
+    api.db.collection("users").update( {username}, { $set: {favorites} } , cb);
   }
 };
 

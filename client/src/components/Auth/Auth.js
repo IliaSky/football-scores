@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Paper, TextField, Button } from '@material-ui/core';
-import {auth} from '../../utils';
+import { auth } from '../../utils';
 import './Auth.css';
 
 class Auth extends Component {

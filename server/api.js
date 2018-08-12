@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const check = require('./auth').check;
+const db = require('./db');
 const flags = require('./flags').map(
   ({country, flag_base64}) => ({[country.toLowerCase()]: flag_base64})
 ).reduce(
@@ -10,6 +12,14 @@ const flags = require('./flags').map(
 router.all('/', (req, res) => {
   console.log('API called');
   res.send({});
+});
+
+// should be router.put('/favorites')
+router.post('/updateFavorites', check, (req, res) => {
+  const username = req.session.passport.user;
+  const favorites = req.body;
+
+  db.updateFavorites(username, favorites, (err, data) => res.send(err || data));
 });
 
 router.all('/flag/:country', (req, res) => {

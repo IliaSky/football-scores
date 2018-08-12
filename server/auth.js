@@ -31,7 +31,7 @@ const auth = {
     passport.use(strategy(db.findUser));
 
     passport.serializeUser((user, cb) => cb(null, user.username));
-    passport.deserializeUser((username, cb) => findUser(username, cb));
+    passport.deserializeUser((username, cb) => db.findUser(username, cb));
 
     app.use(passport.initialize());
     app.use(passport.session());
@@ -54,7 +54,16 @@ router.post('/login', (req, res, next) => {
   passport.authenticate('local'),
   (req, res) => {
     console.log('logged in: ', req.user.username);
-    res.send({username: req.user.username});
+    // temporary hack
+    auth.db.findUser(req.user.username, (err, data) => {
+      if (err) {
+        console.log(err);
+        res.send({username: req.user.username});
+      } else {
+        console.log(data.favorites);
+        res.send({username: data.username, favorites: data.favorites});
+      }
+    })
   }
 );
 
@@ -63,7 +72,7 @@ router.post('/register', (req, res) => {
   console.log(user);
 
   if (!user || !user.username || !user.password) {
-    return res.send(400, {msg: 'Bad data'});
+    return res.send(400, {message: 'Bad data'});
   }
 
   auth.db.findUser(user.username, (err, data) => {
@@ -72,13 +81,13 @@ router.post('/register', (req, res) => {
     const cleanUser = {username: user.username, password: user.password};
 
     if (data) {
-      return res.send(409, {msg: 'username is already taken'});
+      return res.send(409, {message: 'username is already taken'});
     }
 
     auth.db.addUser(cleanUser, (err, data) => {
       if (err) return res.send(500);
 
-      res.send(201, {msg: 'registration successfull'});
+      res.send(201, {message: 'registration successfull'});
     });
   });
 });
@@ -87,7 +96,7 @@ router.post('/logout', (req, res) => {
   if (req.user) {
     req.logout();
   }
-  res.send({ msg: req.user ? 'logging out' : 'no user to log out' });
+  res.send({ message: req.user ? 'logging out' : 'no user to log out' });
 });
 
 module.exports = auth;

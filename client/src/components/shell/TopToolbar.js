@@ -35,7 +35,7 @@ const RightButton = withRouter((props) => {
   if (!isLogged) {
     return (<Button color="inherit" onClick={() => history.push('/auth')}>Login</Button>);
   }
-  return (<Button color="inherit">Logout</Button>);
+  return (<Button color="inherit" onClick={() => auth.logout()}>Logout</Button>);
 });
 
 class TopToolbar extends Component {

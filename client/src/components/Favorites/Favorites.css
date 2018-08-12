@@ -1,0 +1,21 @@
+.Favorites-Paper {
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  padding: 10px;
+}
+
+.Favorites[disabled] .Favorites-Paper{
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.Favorites-message {
+  padding: 30px;
+  text-align: center;
+}
+
+.Favorites .Favorites-Button {
+  margin: 6px 0;
+}

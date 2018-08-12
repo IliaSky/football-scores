@@ -9,6 +9,7 @@ import Competition from './Competition/Competition';
 import CompetitionDetails from './CompetitionDetails/CompetitionDetails';
 import Auth from './Auth/Auth';
 import Home from './Home/Home';
+import Favorites from './Favorites/Favorites';
 
 const routes = [
   { path: '/countries', component: Country, list: true, title: 'Countries' },
@@ -17,6 +18,7 @@ const routes = [
   { path: '/competitions/:id', component: CompetitionDetails },
   { path: '/competitions', component: Competition, list: true, title: 'Competitions' },
   { path: '/auth', component: Auth, title: 'Login / Register', offline: true },
+  { path: '/favorites', component: Favorites, title: 'Favorites', offline: true },
   { path: '/', component: Home, title: 'Football Scores', offline: true },
 ];
 
