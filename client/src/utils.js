@@ -13,16 +13,25 @@ const footballAPI = (endpoint) => axios.get(url + endpoint, {
 
 const serverUrl = 'http://localhost:3000/';
 
-const serverAPI = (endpoint) => axios.post(serverUrl + endpoint, {
-  // headers: {
-  // }
-}).then(res => {
+const serverAPI = (endpoint, data) => axios.post(serverUrl + endpoint, data).then(res => {
   console.log(res);
   return res;
 });
+
+const auth = {
+  login: (data) => serverAPI('auth/login', data).then(() => {
+    auth.isLogged = true;
+  }).catch(err => {
+    console.log(err);
+    auth.isLogged = false;
+    throw err;
+  }),
+  register: (data) => serverAPI('auth/register', data),
+  logout: () => serverAPI('auth/logout').then(() => {auth.isLogged = false})
+};
 
 // for development only
 window.fb = footballAPI;
 window.sa = serverAPI;
 
-export {footballAPI, serverAPI};
+export {footballAPI, serverAPI, auth};

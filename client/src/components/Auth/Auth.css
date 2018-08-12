@@ -1,0 +1,30 @@
+.Auth {
+  text-align: center;
+}
+
+.Auth-logo {
+  width: 280px;
+  margin-top: 20px;
+}
+
+.Auth-Paper {
+  padding: 16px;
+  margin: -150px auto 0;
+  max-width: 300px;
+  position: relative;
+  z-index: 2;
+  /*transform: translate(0, -100%);*/
+}
+
+.Auth-Paper form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Auth-field {
+  /*margin: 12px auto;*/
+}
+
+.Auth-actions .Auth-action {
+  margin: 12px 6px 0;
+}

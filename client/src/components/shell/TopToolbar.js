@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 // import { withStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton, Button } from '@material-ui/core';
 import { ArrowBack as ArrowBackIcon, Home as HomeIcon } from '@material-ui/icons';
+import { auth } from '../../utils';
 
 const styles = {
   leftButton: {
@@ -28,11 +29,11 @@ const LeftButton = withRouter((props) => {
 });
 
 const RightButton = withRouter((props) => {
-  // const {history} = props;
-  const isLogged = false;
+  const {history} = props;
+  const isLogged = auth.isLogged;
 
   if (!isLogged) {
-    return (<Button color="inherit">Login</Button>);
+    return (<Button color="inherit" onClick={() => history.push('/auth')}>Login</Button>);
   }
   return (<Button color="inherit">Logout</Button>);
 });
@@ -41,15 +42,16 @@ class TopToolbar extends Component {
   render() {
     const { title, location } = this.props;
     const isHome = location.pathname === '' || location.pathname === '/';
+    const isAuth = location.pathname === '/auth';
 
     return (
       <AppBar position="static" style={{textAlign: 'center'}}>
         <Toolbar>
-          {isHome || <LeftButton />}
+          {!isHome && <LeftButton />}
           <Typography variant="title" color="inherit" style={{flexGrow: 1}}>
             {title}
           </Typography>
-          {isHome || <RightButton />}
+          {!isAuth && <RightButton />}
         </Toolbar>
       </AppBar>
     );

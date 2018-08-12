@@ -7,6 +7,7 @@ import Match from './Match/Match';
 import MatchDetails from './MatchDetails/MatchDetails';
 import Competition from './Competition/Competition';
 import CompetitionDetails from './CompetitionDetails/CompetitionDetails';
+import Auth from './Auth/Auth';
 import Home from './Home/Home';
 
 const routes = [
@@ -15,6 +16,7 @@ const routes = [
   { path: '/matches', component: Match, list: true, title: 'Matches' },
   { path: '/competitions/:id', component: CompetitionDetails },
   { path: '/competitions', component: Competition, list: true, title: 'Competitions' },
+  { path: '/auth', component: Auth, title: 'Login / Register', offline: true },
   { path: '/', component: Home, title: 'Football Scores', offline: true },
 ];
 
@@ -24,7 +26,7 @@ const theme = createMuiTheme({
       main: '#4CAF50'
     },
     secondary: {
-      main: '#00b0ff' //f50057
+      main: '#f50057' //00b0ff
     }
   }
 });
