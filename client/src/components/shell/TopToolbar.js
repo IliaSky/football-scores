@@ -1,38 +1,59 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import {AppBar, Toolbar, Typography, IconButton, Button} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+// import { withStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, Typography, IconButton, Button } from '@material-ui/core';
+import { ArrowBack as ArrowBackIcon, Home as HomeIcon } from '@material-ui/icons';
 
 const styles = {
-  flex: {
-    flexGrow: 1,
-  },
-  menuButton: {
+  leftButton: {
     marginLeft: -12,
     marginRight: 20,
   }
 };
 
-function TopToolbar(props) {
-  const { classes, title } = props;
+const directLocations = ['/matches', '/countries', '/competitions', '/favorites', '/auth'];
+
+const LeftButton = withRouter((props) => {
+  const {location, history} = props;
+  const path = location.pathname;
+  const isDirect = directLocations.includes(path);
+  const onClick = () => isDirect ? history.replace('/') : history.goBack();
+
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="title" color="inherit" className={classes.flex}>
-          {title}
-        </Typography>
-        <Button color="inherit">Login</Button>
-      </Toolbar>
-    </AppBar>
+    <IconButton style={styles.leftButton} onClick={onClick}>
+      {isDirect ? <HomeIcon /> : <ArrowBackIcon />}
+    </IconButton>
   );
+});
+
+const RightButton = withRouter((props) => {
+  // const {history} = props;
+  const isLogged = false;
+
+  if (!isLogged) {
+    return (<Button color="inherit">Login</Button>);
+  }
+  return (<Button color="inherit">Logout</Button>);
+});
+
+class TopToolbar extends Component {
+  render() {
+    const { title, location } = this.props;
+    const isHome = location.pathname === '' || location.pathname === '/';
+
+    return (
+      <AppBar position="static" style={{textAlign: 'center'}}>
+        <Toolbar>
+          {isHome || <LeftButton />}
+          <Typography variant="title" color="inherit" style={{flexGrow: 1}}>
+            {title}
+          </Typography>
+          {isHome || <RightButton />}
+        </Toolbar>
+      </AppBar>
+    );
+  }
 }
 
-TopToolbar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(TopToolbar);
+export default withRouter(TopToolbar);

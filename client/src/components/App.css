@@ -1,0 +1,19 @@
+.AnimatedSwitch > div {
+  position: absolute;
+  width: 100%;
+}
+
+.BottomToolbar {
+  margin-top: 56px;
+}
+
+.BottomToolbar-tabs {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.BottomToolbar a {
+  padding-left: 2px;
+  padding-right: 2px;
+}

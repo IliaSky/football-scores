@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Paper, List, ListSubheader, ListItem, Divider, Typography } from '@material-ui/core';
+import { Grid, List, ListSubheader, ListItem, Divider, Typography } from '@material-ui/core';
 import shortid from 'shortid';
 
 // "(home|away)Team": "(startingLineups|substitutes)": [{"name", "number"}],

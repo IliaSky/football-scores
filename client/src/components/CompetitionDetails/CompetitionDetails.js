@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import Page from '../shell/Page';
-// import Tabs from '../shell/Tabs';
 import Match from '../Match/Match';
 
 // <Tabs labels={['Matches', 'Standings', 'Top Scorers']}>
@@ -13,12 +14,12 @@ import Match from '../Match/Match';
 //   "seasons": []
 // },
 
-const competitionTypes = {'1': 'League', '2': 'Cup'};
+// const competitionTypes = {'1': 'League', '2': 'Cup'};
 
 class CompetitionDetails extends Component {
   render() {
-    const {data} = this.props;
-    const url = window.location.pathname + '/fixtures';
+    const {location} = this.props;
+    const url = location.pathname + '/fixtures';
     const noToolbars = {top: false, bottom: false};
 
     return (
@@ -33,6 +34,6 @@ class CompetitionDetails extends Component {
 };
 
 
-export default CompetitionDetails;
+export default withRouter(CompetitionDetails);
 
 

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './App.css';
-import './utils.js';
-import Navigator from './components/shell/Navigator';
-import Country from './components/Country/Country';
-import Match from './components/Match/Match';
-import MatchDetails from './components/MatchDetails/MatchDetails';
-import Competition from './components/Competition/Competition';
-import CompetitionDetails from './components/CompetitionDetails/CompetitionDetails';
-import Home from './components/Home/Home';
+import Navigator from './shell/Navigator';
+import Country from './Country/Country';
+import Match from './Match/Match';
+import MatchDetails from './MatchDetails/MatchDetails';
+import Competition from './Competition/Competition';
+import CompetitionDetails from './CompetitionDetails/CompetitionDetails';
+import Home from './Home/Home';
 
 const routes = [
   { path: '/countries', component: Country, list: true, title: 'Countries' },

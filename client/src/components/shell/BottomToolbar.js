@@ -43,8 +43,8 @@ class BottomToolbar extends Component {
     const { value } = this.state;
 
     return (
-      <div style={{marginTop: 56}}>
-        <BottomNavigation style={{position: 'fixed', bottom: 0, width: '100%'}}
+      <footer className="BottomToolbar">
+        <BottomNavigation className="BottomToolbar-tabs"
           value={value}
           showLabels
         >
@@ -52,7 +52,7 @@ class BottomToolbar extends Component {
             <BottomNavigationAction label={text} icon={<Icon />} to={to} key={to} component={Link}/>
           )}
         </BottomNavigation>
-      </div>
+      </footer>
     );
   }
 }
